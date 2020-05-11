@@ -35,6 +35,14 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# git prompt
+if [ -f ~/.github/posh-git-sh/git-prompt.sh ]; then
+    . ~/.github/posh-git-sh/git-prompt.sh
+    git_prompt=yes
+else
+    git_prompt=
+fi
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -57,9 +65,17 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    if [ "$git_prompt" = yes ]; then
+        PROMPT_COMMAND='__posh_git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] " "\\\$ ";'
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
+    fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    if [ "$git_prompt" = yes ]; then
+        PROMPT_COMMAND='__posh_git_ps1 "${debian_chroot:+($debian_chroot)}\u@\h \w " "\\\$ ";'
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
 fi
 unset color_prompt force_color_prompt
 
