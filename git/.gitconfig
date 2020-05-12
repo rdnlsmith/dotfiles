@@ -3,3 +3,5 @@
 	email = rdnlsmith@gmail.com
 [core]
 	editor = vim
+[push]
+	default = current
