@@ -2,5 +2,6 @@
     "workbench.colorTheme": "Yaru Dark",
     "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
-    "terminal.integrated.fontFamily": "'Cascadia Code'"
+    "terminal.integrated.fontFamily": "'Cascadia Code'",
+    "diffEditor.renderSideBySide": false
 }
