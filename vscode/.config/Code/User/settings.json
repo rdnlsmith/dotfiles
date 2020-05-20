@@ -6,5 +6,27 @@
     "terminal.integrated.fontFamily": "'Cascadia Code'",
     "terminal.integrated.fontSize": 16,
     "diffEditor.renderSideBySide": false,
-    "editor.rulers": [ 100 ]
+    "editor.rulers": [ 100 ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+    {
+        "before": ["u"],
+        "after": [],
+        "commands": [
+            {
+                "command": "undo",
+                "args": []
+            }
+        ]
+    },
+    {
+        "before": ["<C-r>"],
+        "after": [],
+        "commands": [
+            {
+                "command": "redo",
+                "args": []
+            }
+        ]
+    }
+]
 }
