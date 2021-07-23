@@ -35,6 +35,11 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# local binaries/scripts
+if [ -d ~/.bin ]; then
+    export PATH="$PATH:$HOME/.bin"
+fi
+
 # git prompt
 if [ -f ~/.github/posh-git-sh/git-prompt.sh ]; then
     . ~/.github/posh-git-sh/git-prompt.sh
